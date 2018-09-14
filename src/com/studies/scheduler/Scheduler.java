@@ -9,12 +9,12 @@ import com.studies.model.Invoice;
 public class Scheduler {
 
     public static void main(String[] args) {
-
-        List<Invoice> overdueInvoices = new InvoiceDAO().getOverdueInvoices();
         EmailSender emailSender = new EmailSender();
 
-        for (Invoice invoice : overdueInvoices) {
+        List<Invoice> overdueInvoices = new InvoiceDAO().getOverdueInvoices();
+        overdueInvoices.forEach(invoice -> {
             emailSender.send(invoice.getDebtorEmail(), invoice.summary());
-        }
+            invoice.setSentNotification(true);
+        });
     }
 }

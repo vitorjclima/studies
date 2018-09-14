@@ -9,6 +9,8 @@ public class Invoice {
     private String debtorEmail;
     private BigDecimal amount;
     private LocalDate dueDate;
+    private Boolean sentNotification;
+
 
     public Invoice(String debtorEmail, BigDecimal amount, LocalDate dueDate) {
         this.debtorEmail = debtorEmail;
@@ -43,5 +45,13 @@ public class Invoice {
     public String summary() {
         String formattedDueDate = getDueDate().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
         return String.format("Due Amount: €%s, Due Date: %s", getAmount(), formattedDueDate);
+    }
+
+    public Boolean getSentNotification() {
+        return sentNotification;
+    }
+
+    public void setSentNotification(Boolean sentNotification) {
+        this.sentNotification = sentNotification;
     }
 }
