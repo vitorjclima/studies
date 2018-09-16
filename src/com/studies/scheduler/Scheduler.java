@@ -9,11 +9,13 @@ import com.studies.model.Invoice;
 public class Scheduler {
 
     public static void main(String[] args) {
-        EmailSender emailSender = new EmailSender();
 
         List<Invoice> overdueInvoices = new InvoiceDAO().getOverdueInvoices();
         overdueInvoices.forEach(invoice -> {
+
+            EmailSender emailSender = (to, text) -> System.out.println("Sending e-mail to " + to + " with the text: "+ text +".\n");
             emailSender.send(invoice.getDebtorEmail(), invoice.summary());
+
             invoice.setSentNotification(true);
         });
     }
