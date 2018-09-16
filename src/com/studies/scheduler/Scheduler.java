@@ -1,7 +1,6 @@
 package com.studies.scheduler;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -12,10 +11,8 @@ import com.studies.model.Invoice;
 public class Scheduler {
 
     public static void debtorFilter(List<String> debtors, Predicate<String> condition) {
-        for (String debtor : debtors) {
-            if(condition.test(debtor))
-                System.out.println(debtor);
-        }
+        debtors.stream().filter(condition::test)
+                        .forEach(System.out::println);
     }
 
     public static void main(String[] args) {
@@ -37,6 +34,5 @@ public class Scheduler {
 
         //Predicate
         debtorFilter(debtors, s -> s.startsWith("m"));
-
     }
 }
