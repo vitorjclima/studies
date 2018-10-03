@@ -189,5 +189,8 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+.idea/
+target/
+
 
 # End of https://www.gitignore.io/api/linux,windows,eclipse,intellij
